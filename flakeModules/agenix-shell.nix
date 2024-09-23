@@ -142,11 +142,7 @@ in {
 
       installationScript = mkOption {
         type = types.package;
-        default = pkgs.writeShellApplication {
-          name = "install-agenix-shell";
-          runtimeInputs = [];
-          text = config.agenix-shell._installSecrets;
-        };
+        default = pkgs.writeShellScriptBin "install-agenix-shell" config.agenix-shell._installSecrets;
         description = "Script that exports secrets as variables, it's meant to be used as hook in `devShell`s.";
         defaultText = lib.literalMD "An automatically generated package";
       };
